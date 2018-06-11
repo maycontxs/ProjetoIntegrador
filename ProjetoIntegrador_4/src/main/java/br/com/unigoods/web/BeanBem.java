@@ -1,4 +1,4 @@
-package depreciar.com;
+package br.com.unigoods.web;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,16 +6,16 @@ import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
 
-import bens.com.Ben;
+import br.com.unigoods.model.patrimonio.Bem;
 
-@ManagedBean(name = "Depre")
+@ManagedBean(name = "depre")
 @SessionScoped
 
-public class BeanBen implements Serializable {
+public class BeanBem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	Ben ben = new Ben();
+	Bem ben = new Bem();
 
 	private Date dataInic;
 	private Date dataFinal;

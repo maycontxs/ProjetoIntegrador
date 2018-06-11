@@ -1,9 +1,9 @@
-package bens.com;
+package br.com.unigoods.model.patrimonio;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Ben implements Serializable {
+public class Bem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

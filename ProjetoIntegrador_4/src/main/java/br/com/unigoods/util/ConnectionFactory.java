@@ -1,4 +1,4 @@
-package connectionDAO;
+package br.com.unigoods.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
