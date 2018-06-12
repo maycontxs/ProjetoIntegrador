@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConnectionFactory {
+	
+	//FALTA CRIAR METODO DE FECHAMENTO DE CONEXAO COM O BANCO
 
 	private static final String DRIVER = "org.postgresql.Driver";
 	private static final String URL = "jdbc:postgresql://localhost:5432/bd_sca";

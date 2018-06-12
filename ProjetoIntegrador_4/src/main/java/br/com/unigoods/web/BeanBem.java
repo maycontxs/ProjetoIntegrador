@@ -73,5 +73,4 @@ public class BeanBem implements Serializable {
 		
 		return gp;
 	}
-	
 }

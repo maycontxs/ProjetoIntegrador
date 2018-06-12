@@ -12,15 +12,19 @@
 </h:head>
  <h:body>
     <div class="login-box">
-    <h:graphicImage value="resources/images/avatar.png" class="avatar"/>
-        <h1>#{msgs.loginheader}</h1>
+        <h1>#{msgs.regcompany}</h1>
             <h:form>
             <p>#{msgs.name_company}</p>
-            <h:inputText type="text" name="name" placeholder="Enter Username"/>
+            <h:inputText type="text" name="name"/>
+            <p>#{msgs.identifier}</p>
+            <h:inputText type="text" name="name"/>
             <p>#{msgs.password}</p>
-            <h:inputText type="password" name="password" placeholder="Enter Password"/>
-            <h:button type="submit" name="submit" value="#{msgs.blogin}" action=""/>
-            <a href="#{request.contextPath}/pages/empresas_form.xhtml">#{msgs.cresgister}</a>    
+            <h:inputText type="password" name="password" />
+             <p>#{msgs.password2}</p>
+            <h:inputText type="password" name="password" />
+            JSF DESGRAÇADO QUE NAO RECONHECE OS METODOS Q EU CRIO NESSA CACETA! VAI TODO MUNDO TOMA NO CU
+            <h:button type="submit" name="submit" value="#{msgs.bregister}" action=""/>
+            <h:button type="reset" name="submit" value="#{msgs.bcancel}" action="#{unigoodsCompany.}"/>  
             </h:form>   
         </div>
     </h:body>
