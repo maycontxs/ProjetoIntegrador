@@ -196,4 +196,5 @@ public class BemDao extends ConnectionFactory{
 	}
 
 
+	
 }

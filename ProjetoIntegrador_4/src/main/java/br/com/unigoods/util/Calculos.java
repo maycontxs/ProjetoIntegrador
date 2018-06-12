@@ -25,6 +25,7 @@ public class Calculos implements Serializable {
 		int diaAtual = calendarAtual.get(Calendar.DAY_OF_MONTH);
 		int mesAtual = calendarAtual.get(Calendar.MONTH) + 1;
 		int anoAtual = calendarAtual.get(Calendar.YEAR);
+		
 		depreciacaoPeriodo = (anoAtual - anoAquisicao) * 12;
 		
 		if (depreciacaoPeriodo > 0) {

@@ -162,4 +162,5 @@ public class Bem implements Serializable {
 	public void setId_baixa(Long id_baixa) {
 		this.id_baixa = id_baixa;
 	}
+	
 }

@@ -1,9 +1,6 @@
 
 CREATE DATABASE bd_unigoods;
 
-
-
-
 CREATE TABLE Bem_Patrimonial(
 
 	nome VARCHAR,

@@ -20,6 +20,7 @@ public class ConnectionFactory implements Serializable {
 			return DriverManager.getConnection(URL, USER, SENHA);
 		} catch (Exception e) {
 
+			
 		}
 		return null;
 	}
