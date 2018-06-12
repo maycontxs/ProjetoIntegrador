@@ -8,10 +8,9 @@ import java.sql.Statement;
 
 public class ConnectionFactory implements Serializable {
 	
-	//FALTA CRIAR METODO DE FECHAMENTO DE CONEXAO COM O BANCO
 	private static final long serialVersionUID = 1L;
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = "jdbc:postgresql://localhost:5432/bd_compras";
+	private static final String URL = "jdbc:postgresql://localhost:5432/bd_unigoods";
 	private static final String USER = "postgres";
 	private static final String SENHA = "root";
 

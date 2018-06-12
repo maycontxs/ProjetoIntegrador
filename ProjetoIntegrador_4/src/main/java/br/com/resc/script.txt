@@ -1,22 +1,39 @@
-CREATE TABLE bem(
-	id_bem SERIAL PRIMARY KEY NOT NULL,
-	nome VARCHAR(50) NOT NULL,
-	custo NUMERIC(8,2) NOT NULL,
-	dataAquisicao DATE NOT NULL,
-	taxaResidual NUMERIC(4,2) NOT NULL,
-	vidaUtil INTEGER NOT NULL,
-	turnoDeOito NUMERIC(4,2) NOT NULL,
-	tempoDeUso INTEGER NOT NULL,
+
+CREATE DATABASE bd_unigoods;
+
+
+
+
+CREATE TABLE Bem_Patrimonial(
+
+	nome VARCHAR,
+	data_aquisicao VARCHAR,
+	categoria VARCHAR,
+	vida_util FLOAT,
+	bem_usado VARCHAR,
+	valor_aquisicao FLOAT,
+	taxa_residual FLOAT,
+	turnos_trabalhados INTEGER,
+	tempo_de_uso DOUBLE,
+	cod_bem SERIAL NOT NULL,
 	id_empresa SERIAL NOT NULL
 );
 
+CREATE TABLE baixa_de_Bem(
+
+	cod_Bem SERIAL NOT NULL,
+	data_de_baixa FLOAT,
+	valor FLOAT,
+	
+);
+
 CREATE TABLE empresa(
+
 	id_empresa SERIAL PRIMARY KEY NOT NULL,
 	senha VARCHAR(50) NOT NULL,
 	cnpj VARCHAR(50) NOT NULL,
-	nome VARCHAR(100) NOT NULL,
-	areaDeAtuacao VARCHAR(100)
+	nome VARCHAR(100) NOT NULL
 );
 
-ALTER TABLE bem ADD FOREIGN KEY (id_empresa) REFERENCES empresa(id_empresa);
-
+ALTER TABLE Bem_Patrimonial ADD FOREIGN KEY (id_empresa) REFERENCES empresa(id_empresa);
+ALTER TABLE baixa_de_Bem ADD FOREIGN KEY (cod_Bem) REFERENCES Bem_Patrimonial(cod_Bem);
