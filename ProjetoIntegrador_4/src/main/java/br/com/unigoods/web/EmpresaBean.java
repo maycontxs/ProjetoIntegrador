@@ -3,12 +3,15 @@ package br.com.unigoods.web;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 import br.com.unigoods.model.empresa.Empresa;
 import br.com.unigoods.model.empresa.EmpresaDAO;
 import br.com.unigoods.model.empresa.EmpresaRN;
 
 @ManagedBean(name = "unigoodsCompany")
+@RequestScoped
+
 public class EmpresaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +32,6 @@ public class EmpresaBean implements Serializable{
 	}
 
 	public String actionCancel() {
-
 		new EmpresaRN().apagar(empresa);
 		return "login?faces-redirect=true";
 	}

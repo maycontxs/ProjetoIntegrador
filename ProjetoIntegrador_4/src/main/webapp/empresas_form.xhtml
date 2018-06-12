@@ -4,28 +4,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
 
 <h:head>
 	<title>#{msgs.titlesimple}</title>
-	 <h:outputStylesheet library="css" name="login_style.css"></h:outputStylesheet>
+	<h:outputStylesheet library="css" name="login_style.css"></h:outputStylesheet>
 </h:head>
- <h:body>
-    <div class="login-box">
-        <h1>#{msgs.regcompany}</h1>
-            <h:form>
-            <p>#{msgs.name_company}</p>
-            <h:inputText type="text" name="name"/>
-            <p>#{msgs.identifier}</p>
-            <h:inputText type="text" name="name"/>
-            <p>#{msgs.password}</p>
-            <h:inputText type="password" name="password" />
-             <p>#{msgs.password2}</p>
-            <h:inputText type="password" name="password" />
-            JSF DESGRAÇADO QUE NAO RECONHECE OS METODOS Q EU CRIO NESSA CACETA! VAI TODO MUNDO TOMA NO CU
-            <h:button type="submit" name="submit" value="#{msgs.bregister}" action=""/>
-            <h:button type="reset" name="submit" value="#{msgs.bcancel}" action="#{unigoodsCompany.}"/>  
-            </h:form>   
-        </div>
-    </h:body>
+
+<h:body>
+	<div class="login-box">
+		<h1>#{msgs.regcompany}</h1>
+
+		<h:form>
+			<p>#{msgs.name_company}</p>
+			<h:inputText type="text" name="name" />
+			<p>#{msgs.identifier}</p>
+			<h:inputText type="text" name="name" />
+			<p>#{msgs.password}</p>
+			<h:inputText type="password" name="password" />
+			<p>#{msgs.password2}</p>
+			<h:inputText type="password" name="password" />
+		</h:form>
+
+		<h:form>
+			<h:commandButton value="#{msgs.bcancel}"
+				action="#{unigoodsCompany.actionCancel}" />
+		</h:form>
+
+	</div>
+
+</h:body>
+
 </html>
