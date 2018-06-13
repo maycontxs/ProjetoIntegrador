@@ -2,75 +2,80 @@ package br.com.unigoods.web;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.SessionScoped;
 
+import br.com.unigoods.model.patrimonio.BemRN;
 import br.com.unigoods.model.patrimonio.Bem;
 
-@ManagedBean(name = "depre")
+@ManagedBean(name = "uniGoodsBens")
 @SessionScoped
 
 public class BeanBem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	Bem bem = new Bem();
+	private Date d = new Date();
 
-	Bem ben = new Bem();
-
-	private Date dataInic;
-	private Date dataFinal;
-
-	@SuppressWarnings("deprecation")
-	public int dataDiff() {
-		Date d1 = null;
-		Date d2 = null;
-		dataInic = d1;
-		dataFinal = d2;
-
-		int meses = 0;
-
-		if ((dataFinal.getYear() - dataInic.getYear()) > 1) {
-			if (dataInic.getDay() > 15) {
-				meses = meses + ((dataFinal.getYear() - dataInic.getYear()) * 12);
-				meses = 12 - dataInic.getMonth();
-				meses = meses + dataFinal.getMonth();
-				meses--;
-				if(dataFinal.getDay()<15) {
-					meses--;					
-				}
-			} else {
-				meses = meses + ((dataFinal.getYear() - dataInic.getYear()) * 12);
-				meses = 12 - dataInic.getMonth();
-				meses = meses + dataFinal.getMonth();
-				if(dataFinal.getDay()<15) {
-					meses--;					
-				}
-			}
-		} else {
-			if (dataInic.getDay() > 15) {
-				meses = 12 - dataInic.getMonth();
-				meses = meses + dataFinal.getMonth();
-				meses--;
-			} else {
-				meses = 12 - dataInic.getMonth();
-				meses = meses + dataFinal.getMonth();
-			}
-			if(dataFinal.getDay()<15) {
-				meses--;					
-			}
-		}
-		return meses;
+	public List<Bem> getListagem() {
+		return new BemRN().listarTodos();
 	}
 
+	// listarAtivos
+	public List<Bem> getList() {
+		return new BemRN().listarAtivos();
+	}
 
-	public double depre(double cb, double vr, double taxa) {
-		
-		double da = (((cb -vr)*taxa)/12)*dataDiff();
-		
-		double vc = cb - da;
-		
-		double gp = vc - da;
-		
-		return gp;
+	public String actionNovo() {
+		this.bem = new Bem();
+		return "teste";
+	}
+
+	public String actionVoltarMenu() {
+		return "menu?faces-redirect=true";
+	}
+
+	public String actionGravar() {
+		new BemRN().salvar(bem);
+		return "manutencao_dos_bens?faces-redirect=true";
+	}
+
+	public String actionCalcularDep() {
+		bem = new BemRN().calcular(bem);
+		return "";
+	}
+
+	public String actionBaixar() {
+		new BemRN().inserirBaixa_bem(bem);
+		return "";
+	}
+
+	public String actionCalcularEbaixar() {
+		bem = new BemRN().calcular(bem);
+		return "";
+	}
+
+	public String actionIrParaBaixa() {
+		bem = new BemRN().calcular(bem);
+		return "";
+	}
+
+	public Bem getbem() {
+		return bem;
+	}
+
+	public void setbem(Bem bem) {
+		this.bem = bem;
+	}
+
+	public Date getD() {
+		return d;
+	}
+
+	public void setD(Date d) {
+		this.d = d;
 	}
 }

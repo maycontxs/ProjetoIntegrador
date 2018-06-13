@@ -1,8 +1,10 @@
 package br.com.unigoods.model.patrimonio;
 
+
 import java.util.List;
 
 import br.com.unigoods.util.Calculos;
+
 
 public class BemRN {
 	
