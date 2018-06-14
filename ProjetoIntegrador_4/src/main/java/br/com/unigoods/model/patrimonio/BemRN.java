@@ -21,14 +21,16 @@ public class BemRN {
 		new BemDao().insert(Bem);
 	}
 	public void salvar(Bem Bem) {
-		if (Bem.getId() == null) {
-			new BemDao().insert(Bem);
-		} else {
-			new BemDao().atualizarBD(Bem);
-		}
+		new BemDao().insert(Bem);
+		
+		//if (Bem.getId() == null) {
+			
+		//} else {
+			//new BemDao().atualizarBD(Bem);
+		//}
 	}
 	public void inserirBaixa_bem(Bem Bem){
-		new BemDao().inserirBaixa(Bem);
+		//new BemDao().inserirBaixa(Bem);
 		
 	}
 	
@@ -37,10 +39,10 @@ public class BemRN {
 	}
 	public Bem calcular(Bem p) {
 		Bem desgraca = new BemDao().buscarPorCodigo(p);
-		Bem capeta = new Calculos().calculoDepreciacao(desgraca);
-		desgraca.setValor_contabil(capeta.getValor_contabil());
-		desgraca.setValor_residual(capeta.getValor_residual());
-		desgraca.setPeriodo(capeta.getPeriodo());
+		//Bem capeta = new Calculos().calculoDepreciacao(desgraca);
+		//desgraca.setValor_contabil(capeta.getValor_contabil());
+		//desgraca.setValor_residual(capeta.getValor_residual());
+		//desgraca.setPeriodo(capeta.getPeriodo());
 		return desgraca;
 	}
 

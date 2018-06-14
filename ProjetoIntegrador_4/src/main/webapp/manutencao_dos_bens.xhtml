@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:body>
 	<ui:composition template="/template/layout.xhtml">
@@ -17,57 +18,48 @@
 					<h:form>
 						<div class="btn-group"
 							style="margin-top: 20px; margin-bottom: 20px;">
-							<h:commandButton class="btn btn-success btn-block"
+							<p:commandButton class="btn btn-success btn-block"
 								value="#{msgs.linkManu}" action="#{uniGoodsBens.actionNovo}" />
 						</div>
 						<h:inputHidden value="#{uniGoodsBens.bem.id}" />
-						<h:dataTable value="#{uniGoodsBens.list}" var="bem"
+						<p:dataTable value="#{uniGoodsBens.listagem}" var="bem"
 							class=" table table-hover " style="text-align:center;">
-							<h:column>
+							<p:column headerText="Id">
 								<h:outputLabel value="#{bem.id}" />
-							</h:column>
-							<h:column>
+							</p:column>
+							<p:column headerText="nome">
 								<h:outputLabel value="#{bem.nome}" />
-							</h:column>
-							<h:column>
+							</p:column>
+							<p:column headerText="Data Aquisição">
 								<h:outputLabel value="#{bem.data_aquisicao}" />
-							</h:column>
-							
-							<h:column>
-								<h:outputLabel value="#{bem.vida_util}" />
-							</h:column>
-							<h:column>
-								<h:outputLabel value="#{bem.taxa_depreciacao}" />
-							</h:column>
-							<h:column>
-								<h:outputLabel value="#{bem.turnos}" />
-							</h:column>
-							
-							<h:column>
-								<h:outputLabel value="#{bem.taxa_depreciacao}" />
-							</h:column>
-							
-							
-							
-							<h:column>
-								<h:commandLink action="patrimonio_form">
-									<f:setPropertyActionListener value="#{bem}"
-										target="#{uniGoodsBens.bem}" />
-								</h:commandLink>
-							</h:column>
-							<h:column>
-								<h:commandLink action="#{uniGoodsBens.actionCalcularDep}">
+							</p:column>
 
-									<f:setPropertyActionListener value="#{bem}"
-										target="#{uniGoodsBens.bem}" />
+							<p:column headerText="Vida util">
+								<h:outputLabel value="#{bem.vida_util}" />
+							</p:column>
+							<p:column headerText="Taxa depreciação">
+								<h:outputLabel value="#{bem.taxa_depreciacao}" />
+							</p:column>
+							<p:column headerText="turnos">
+								<h:outputLabel value="#{bem.turnos}" />
+							</p:column>
+
+
+							<p:column headerText="Depreciar">
+
+								<h:commandLink value="Depreciar"
+									action="#{uniGoodsBens.actionCalcularDep}">
+									<f:setPropertyActionListener value="#{bem.id}"
+										target="#{uniGoodsBens.bem.id}" />
 								</h:commandLink>
-							</h:column>
-						</h:dataTable>
-						<div class="btn-group" style="margin-top: 20px;">
-							<h:commandButton class="btn btn-success"
-								value="#{msgs.botaoVoltar}"
-								action="#{uniGoodsBens.actionVoltarMenu}" />
-						</div>
+							</p:column>
+							<p:column>
+
+
+
+							</p:column>
+						</p:dataTable>
+						<div class="btn-group" style="margin-top: 20px;"></div>
 					</h:form>
 				</div>
 			</div>

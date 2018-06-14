@@ -57,7 +57,7 @@ public class Calculos implements Serializable {
 
 		return depreciacaoPeriodo;
 	}
-	
+/*	
 	public Bem calculoDepreciacao(Bem p){
 		float calcularTurnoDeUso; 
 		int periodo = this.calcularPeriodo(p);
@@ -108,7 +108,7 @@ public class Calculos implements Serializable {
 		
 		return p;
 	}
-
+*/
 	public Bem getP() {
 		return bem;
 	}

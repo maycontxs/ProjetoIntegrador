@@ -19,28 +19,25 @@ public class BemDao extends ConnectionFactory{
 
 	public List<Bem> selecionarBaixados(){
 		List<Bem> listaBaixados = null;
-		String sql = "select * from Bem_Patrimonial inner join baixa_de_Bem on Bem_Patrimonial.cod_Bem = "
-				+ "baixa_de_bem.cod_Bem order by nome";
+		String sql = "select * from Bem_Patrimonial where data_baixa= not null;";
 		try {
 			con = getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			listaBaixados = new ArrayList<Bem>();
 			while (rs.next()){
-				Bem pt = new Bem();
-				pt.setId(rs.getLong("cod_Bem"));
-				pt.setNome(rs.getString("nome"));
-				pt.setData_aquisicao(rs.getDate("data_aquisicao"));
-				pt.setCategoria(rs.getString("categoria"));
-				pt.setVida_util(rs.getFloat("vida_util"));
-				pt.setBem_usado(rs.getString("bem_usado"));
-				pt.setValor_aquisicao(rs.getFloat("valor_aquisicao"));
-				pt.setTempo_de_uso(rs.getFloat("tempo_de_uso"));
-				pt.setTaxa_residual(rs.getFloat("taxa_residual"));
-				pt.setTurnos(rs.getFloat("turnos_trabalhados"));
-				pt.setData_de_baixa(rs.getDate("data_de_baixa"));
-				pt.setValor_de_baixa(rs.getFloat("valor"));
-				listaBaixados.add(pt);
+				Bem Bem = new Bem();
+				Bem.setId(rs.getLong("cod_bem"));
+				Bem.setNome(rs.getString("nome"));
+				Bem.setData_aquisicao(rs.getDate("data_aquisicao"));
+				Bem.setVida_util(rs.getFloat("vida_util"));
+				Bem.setValor_aquisicao(rs.getFloat("valor_aquisicao"));
+				Bem.setValor_residual(rs.getFloat("valor_residual"));
+				Bem.setTaxa(rs.getFloat("taxa"));
+				Bem.setTurnos(rs.getFloat("turnos_trabalhados"));
+				Bem.setTempo_de_uso(rs.getFloat("tempo_de_uso"));
+				Bem.setData_baixa(rs.getDate("data_baixa"));
+				listaBaixados.add(Bem);
 			}
 		}catch (Exception e){
 			System.err.println("Erro: " + e.getMessage());
@@ -52,9 +49,7 @@ public class BemDao extends ConnectionFactory{
 	}
 	public List<Bem> lista(){
 		List<Bem> listaAtivos = null;
-		String sql = "select * from Bem_Patrimonial where cod_Bem not in "
-				+ "(select cod_Bem from baixa_de_bem) "
-				+ "order by cod_Bem";
+		String sql = "select * from Bem_Patrimonial;";
 		try {
 			con = getConnection();
 			ps = con.prepareStatement(sql);
@@ -65,13 +60,13 @@ public class BemDao extends ConnectionFactory{
 				Bem.setId(rs.getLong("cod_bem"));
 				Bem.setNome(rs.getString("nome"));
 				Bem.setData_aquisicao(rs.getDate("data_aquisicao"));
-				Bem.setCategoria(rs.getString("categoria"));
 				Bem.setVida_util(rs.getFloat("vida_util"));
-				Bem.setBem_usado(rs.getString("bem_usado"));
 				Bem.setValor_aquisicao(rs.getFloat("valor_aquisicao"));
-				Bem.setTempo_de_uso(rs.getFloat("tempo_de_uso"));
-				Bem.setTaxa_residual(rs.getFloat("taxa_residual"));
+				Bem.setValor_residual(rs.getFloat("valor_residual"));
+				Bem.setTaxa(rs.getFloat("taxa"));
 				Bem.setTurnos(rs.getFloat("turnos_trabalhados"));
+				Bem.setTempo_de_uso(rs.getFloat("tempo_de_uso"));
+				Bem.setData_baixa(rs.getDate("data_baixa"));
 				listaAtivos.add(Bem);
 			}
 		}catch (Exception e){
@@ -85,8 +80,8 @@ public class BemDao extends ConnectionFactory{
 	public Bem insert(Bem Bem){
 		
 		String sql = "INSERT INTO Bem_Patrimonial (nome, data_aquisicao, vida_util, "
-				+ "valor_aquisicao, taxa_residual, turnos_trabalhados, tempo_de_uso) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+				+ "valor_aquisicao, valor_residual, taxa, turnos_trabalhados, tempo_de_uso) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			Connection con;
 			PreparedStatement ps;
@@ -94,12 +89,12 @@ public class BemDao extends ConnectionFactory{
 			ps = con.prepareStatement(sql);
 			ps.setString(1, Bem.getNome());
 			ps.setDate(2, new Date(Bem.getData_aquisicao().getTime()));
-			//System.out.println("dt: "+Bem.getData_aquisicao().getTime());
 			ps.setFloat(3, Bem.getVida_util());
 			ps.setFloat(4, Bem.getValor_aquisicao());
-			ps.setFloat(5, Bem.getTaxa_residual());
-			ps.setFloat(6, Bem.getTurnos());
-			ps.setFloat(7, Bem.getTempo_de_uso());
+			ps.setFloat(5, Bem.getValor_residual());
+			ps.setFloat(6, Bem.getTaxa());
+			ps.setFloat(7, Bem.getTurnos());
+			ps.setFloat(8, Bem.getTempo_de_uso());
 			ps.executeUpdate();
 			System.out.println("feito insert");
 		} catch (Exception e){
@@ -110,7 +105,8 @@ public class BemDao extends ConnectionFactory{
 		}
 		return Bem;
 	}
-	
+
+/*	
 	public Bem inserirBaixa(Bem Bem){
 		String sql = "INSERT INTO baixa_de_bem (data_de_baixa, valor, cod_bem) "
 				+ " VALUES (?, ?, ?)";
@@ -119,7 +115,7 @@ public class BemDao extends ConnectionFactory{
 			PreparedStatement ps;
 			con = getConnection();
 			ps = con.prepareStatement(sql);
-			ps.setDate(1, new Date(Bem.getData_de_baixa().getTime()));
+			ps.setDate(1, new Date(Bem.getData_baixa().getTime()));
 			ps.setFloat(2, Bem.getValor_de_baixa());
 			ps.setLong(3, Bem.getId());
 			ps.executeUpdate();
@@ -132,6 +128,8 @@ public class BemDao extends ConnectionFactory{
 		return Bem;
 	}
 
+	
+	
 	public Bem atualizarBD(Bem pt){
 		String sql = "UPDATE Bem_Patrimonial SET  bem_usado = ?, tempo_de_uso =?, nome = ?, "
 				+ "data_aquisicao = ?, categoria = ?, vida_util = ?, "
@@ -161,7 +159,7 @@ public class BemDao extends ConnectionFactory{
 		}
 		return pt;
 	}
-	 
+*/	 
 	public Bem buscarPorCodigo(Bem p){
 	     String sql = "SELECT * from Bem_Patrimonial WHERE cod_bem = ? ;";
 	     Bem ptO = null;
@@ -177,10 +175,10 @@ public class BemDao extends ConnectionFactory{
 	        	ptO.setData_aquisicao(rs.getDate("data_aquisicao"));
 	        	ptO.setVida_util(rs.getFloat("vida_util"));
 	        	ptO.setValor_aquisicao(rs.getFloat("valor_aquisicao"));
-	        	ptO.setTaxa_residual(rs.getFloat("taxa_residual"));
+	        	ptO.setValor_residual(rs.getFloat("valor_residual"));
 				ptO.setTurnos(rs.getFloat("turnos_trabalhados"));
 				ptO.setTempo_de_uso(rs.getFloat("tempo_de_uso"));
-				ptO.setBem_usado(rs.getString("bem_usado"));
+				ptO.setData_baixa(rs.getDate("data_baixa"));
 	        }
 	    } catch (Exception e){
 			System.err.println("Erro: " + e.getMessage());
