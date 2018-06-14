@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+    	<ui:composition template="/template/layout.xhtml">
+    	<ui:define name="content">
+    	
+    		<h:inputHidden value="#{uniGoodsBens.bem.id}" />
+	
+			
+    		<div class="panel panel-success">
+		    	<div class="panel-heading"><h1>#{msgs.tituloP}</h1></div>
+		    	<h:form>
+					<div class="alert alert-warning">
+						<strong>#{msgs.txA}</strong> #{msgs.txP}
+						
+					</div>	
+				</h:form>
+		    	
+		    	<h:form id="bem">
+		    	<h:inputHidden value="#{uniGoodsBens.bem.id}" />
+		    		<h:messages layout="table" errorClass="errors"/>
+
+			    	
+			    	<h:messages layout="table" errorClass="errors"/>
+			    	
+			    	<div class="form-horizontal">
+			    		<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptDepN}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" value="#{uniGoodsBens.bem.nome}"
+	 							required="true"/>
+	 							
+	 						</div>
+	 					</div>
+			    		<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptD}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" value="#{uniGoodsBens.bem.data_aquisicao}"
+	 							required="true">
+	 								<f:convertDateTime dateStyle="short"/>
+	 							</h:inputText>
+	 							
+	 						</div>
+			    		</div>
+			    		
+			    		
+			    		
+			    		<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptT}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" value="#{uniGoodsBens.bem.tempo_de_uso}"
+	 							required="true"/>
+	 							
+	 						</div>
+	 					</div>			    		
+			    		
+			    		
+			    		
+			    		
+	 					<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptVa}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" 
+	 							value="#{uniGoodsBens.bem.valor_aquisicao}" required="true">
+	 								<f:convertNumber minFractionDigits="2"/>
+	 						</h:inputText>
+	 						</div>
+	 					</div>
+	 					<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptTr}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" value="#{uniGoodsBens.bem.taxa_residual}" required="true">
+	 								<f:convertNumber pattern="#,##0.0#"/>
+	 						</h:inputText>
+	 						</div>
+	 					</div>
+	 					<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptC}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" value="#{uniGoodsBens.bem.categoria}"
+	 							required="true"/>
+	 						</div>
+	 					</div>
+	 					<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptVu}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:inputText class="form-control" value="#{uniGoodsBens.bem.vida_util}"
+	 							required="true"/>
+	 						</div>
+	 					</div>
+	 					<div class="form-group">
+			    			<h:outputLabel class="control-label col-sm-5" value="#{msgs.promptTu}"></h:outputLabel>
+			    			<div class="col-sm-3">
+	 							<h:selectOneMenu class="control-label col-sm-30" value="#{uniGoodsBens.bem.turnos}"
+	 							required="true">
+									<f:selectItem itemLabel="#{msgs.item1}" itemValue="1" />
+									<f:selectItem itemLabel="#{msgs.item2}" itemValue="2" />
+									<f:selectItem itemLabel="#{msgs.item3}" itemValue="3" />
+								</h:selectOneMenu>
+	 						</div>
+	 					</div>
+		    		</div>
+					<td><div class="btn-group" style="margin-bottom: 20px;">
+						<h:commandButton class="btn btn-success" value="#{msgs.botaoG}" action="#{uniGoodsBens.actionGravar}"/>
+					</div></td>
+    				</h:form>
+    				<h:form>
+    				
+    					<div class="btn-group" style="margin-bottom: 20px;">
+    						<h:commandButton class="btn btn-success" value="#{msgs.botaoVoltar}" action="manutencao_dos_bens"/>
+							
+						</div>
+    					
+	    				
+				   	</h:form>
+			</div>
+    	</ui:define>
+    	</ui:composition>
+    </h:body>
+</html>

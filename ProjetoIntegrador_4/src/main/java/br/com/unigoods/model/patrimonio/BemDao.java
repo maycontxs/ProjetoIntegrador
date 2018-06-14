@@ -84,26 +84,22 @@ public class BemDao extends ConnectionFactory{
 	}
 	public Bem insert(Bem Bem){
 		
-		String sql = "INSERT INTO Bem_Patrimonial (nome, data_aquisicao, categoria, vida_util, "
-				+ "bem_usado, valor_aquisicao, taxa_residual, turnos_trabalhados, tempo_de_uso) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Bem_Patrimonial (nome, data_aquisicao, vida_util, "
+				+ "valor_aquisicao, taxa_residual, turnos_trabalhados, tempo_de_uso) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			Connection con;
 			PreparedStatement ps;
 			con = getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, Bem.getNome());
-			ps.setDate(2, new Date(Bem.getData_aquisicao()
-					.getTime()));
-			System.out.println("dt: "+Bem.getData_aquisicao()
-					.getTime());
-			ps.setString(3, Bem.getCategoria());
-			ps.setFloat(4, Bem.getVida_util());
-			ps.setString(5, Bem.getBem_usado());
-			ps.setFloat(6, Bem.getValor_aquisicao());
-			ps.setFloat(7, Bem.getTaxa_residual());
-			ps.setFloat(8, Bem.getTurnos());
-			ps.setFloat(9, Bem.getTempo_de_uso());
+			ps.setDate(2, new Date(Bem.getData_aquisicao().getTime()));
+			//System.out.println("dt: "+Bem.getData_aquisicao().getTime());
+			ps.setFloat(3, Bem.getVida_util());
+			ps.setFloat(4, Bem.getValor_aquisicao());
+			ps.setFloat(5, Bem.getTaxa_residual());
+			ps.setFloat(6, Bem.getTurnos());
+			ps.setFloat(7, Bem.getTempo_de_uso());
 			ps.executeUpdate();
 			System.out.println("feito insert");
 		} catch (Exception e){

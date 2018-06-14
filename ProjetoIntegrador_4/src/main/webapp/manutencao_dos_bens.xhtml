@@ -6,64 +6,73 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
- <h:body>
-    	<ui:composition template="/templates/layout.xhtml">
-    	<ui:define name="content">
-    		<div class="panel panel-success">
-		    	<div class="panel-heading"><h1>#{msgs.tituloManu}</h1></div>
-    		
-    			
-    		<div align="center">
-				
-				
-				<h:form>
-					<div class="btn-group" style="margin-top: 20px; margin-bottom: 20px;">
-		 				<h:commandButton class="btn btn-success btn-block" value="#{msgs.linkManu}"
-								action="#{ecoPatrimonio.actionNovo}"/>
-	 				</div>
-				
-					<h:inputHidden value="#{ecoPatrimonio.patrimonio.id}" />
-					<h:dataTable value="#{ecoPatrimonio.list}" var="patrimonio"
-					class=" table table-hover " style="text-align:center;">
-						
-						<h:column>
+<h:body>
+	<ui:composition template="/template/layout.xhtml">
+		<ui:define name="content">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h1>#{msgs.tituloManu}</h1>
+				</div>
+				<div align="center">
+					<h:form>
+						<div class="btn-group"
+							style="margin-top: 20px; margin-bottom: 20px;">
+							<h:commandButton class="btn btn-success btn-block"
+								value="#{msgs.linkManu}" action="#{uniGoodsBens.actionNovo}" />
+						</div>
+						<h:inputHidden value="#{uniGoodsBens.bem.id}" />
+						<h:dataTable value="#{uniGoodsBens.list}" var="bem"
+							class=" table table-hover " style="text-align:center;">
+							<h:column>
+								<h:outputLabel value="#{bem.id}" />
+							</h:column>
+							<h:column>
+								<h:outputLabel value="#{bem.nome}" />
+							</h:column>
+							<h:column>
+								<h:outputLabel value="#{bem.data_aquisicao}" />
+							</h:column>
 							
-							<h:outputLabel value="#{patrimonio.id}" />
-						</h:column>
-						<h:column>
+							<h:column>
+								<h:outputLabel value="#{bem.vida_util}" />
+							</h:column>
+							<h:column>
+								<h:outputLabel value="#{bem.taxa_depreciacao}" />
+							</h:column>
+							<h:column>
+								<h:outputLabel value="#{bem.turnos}" />
+							</h:column>
 							
-							<h:outputLabel value="#{patrimonio.nome}" />
-						</h:column>
-						<h:column>
+							<h:column>
+								<h:outputLabel value="#{bem.taxa_depreciacao}" />
+							</h:column>
 							
-							<h:outputLabel value="#{patrimonio.categoria}" />
-						</h:column>
-						
-						<h:column>
 							
-							<h:commandLink action="patrimonio_incluir_modificar">
-								
-								<f:setPropertyActionListener value="#{patrimonio}" target="#{ecoPatrimonio.patrimonio}"/>
-							</h:commandLink>
-						</h:column>
-						<h:column>
 							
-							<h:commandLink action="#{ecoPatrimonio.actionCalcularDep}">
-								
-								<f:setPropertyActionListener value="#{patrimonio}" target="#{ecoPatrimonio.patrimonio}"/>
-							</h:commandLink>
-						</h:column>
-						
-					</h:dataTable>
+							<h:column>
+								<h:commandLink action="patrimonio_form">
+									<f:setPropertyActionListener value="#{bem}"
+										target="#{uniGoodsBens.bem}" />
+								</h:commandLink>
+							</h:column>
+							<h:column>
+								<h:commandLink action="#{uniGoodsBens.actionCalcularDep}">
 
-					<div class="btn-group" style="margin-top: 20px;">
-		 				<h:commandButton class="btn btn-success" value="#{msgs.botaoVoltar}" action="#{ecoPatrimonio.actionVoltarMenu}"/>
-	 				</div>
+									<f:setPropertyActionListener value="#{bem}"
+										target="#{uniGoodsBens.bem}" />
+								</h:commandLink>
+							</h:column>
+						</h:dataTable>
+						<div class="btn-group" style="margin-top: 20px;">
+							<h:commandButton class="btn btn-success"
+								value="#{msgs.botaoVoltar}"
+								action="#{uniGoodsBens.actionVoltarMenu}" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
 
-				</h:form>
-			</div>
-			</div>
-    	</ui:define>
-    	</ui:composition>
-    </h:body>
+</h:body>
 </html>
